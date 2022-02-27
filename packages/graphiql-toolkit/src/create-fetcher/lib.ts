@@ -51,24 +51,20 @@ export const isSubscriptionWithName = (
  * @param httpFetch {typeof fetch}
  * @returns {Fetcher}
  */
-export const createSimpleFetcher = (
-  options: CreateFetcherOptions,
-  httpFetch: typeof fetch,
-): Fetcher => async (
-  graphQLParams: FetcherParams,
-  fetcherOpts?: FetcherOpts,
-) => {
-  const data = await httpFetch(options.url, {
-    method: 'POST',
-    body: JSON.stringify(graphQLParams),
-    headers: {
-      'content-type': 'application/json',
-      ...options.headers,
-      ...fetcherOpts?.headers,
-    },
-  });
-  return data.json();
-};
+export const createSimpleFetcher =
+  (options: CreateFetcherOptions, httpFetch: typeof fetch): Fetcher =>
+  async (graphQLParams: FetcherParams, fetcherOpts?: FetcherOpts) => {
+    const data = await httpFetch(options.url, {
+      method: 'POST',
+      body: JSON.stringify(graphQLParams),
+      headers: {
+        'content-type': 'application/json',
+        ...options.headers,
+        ...fetcherOpts?.headers,
+      },
+    });
+    return data.json();
+  };
 
 export const createWebsocketsFetcherFromUrl = (
   url: string,
@@ -93,31 +89,34 @@ export const createWebsocketsFetcherFromUrl = (
  * @param wsClient {Client}
  * @returns {Fetcher}
  */
-export const createWebsocketsFetcherFromClient = (wsClient: Client) => (
-  graphQLParams: FetcherParams,
-) =>
-  makeAsyncIterableIteratorFromSink<ExecutionResult>(sink =>
-    wsClient!.subscribe(graphQLParams, {
-      ...sink,
-      error: err => {
-        if (err instanceof Error) {
-          sink.error(err);
-        } else if (err instanceof CloseEvent) {
-          sink.error(
-            new Error(
-              `Socket closed with event ${err.code} ${err.reason || ''}`.trim(),
-            ),
-          );
-        } else {
-          sink.error(
-            new Error(
-              (err as GraphQLError[]).map(({ message }) => message).join(', '),
-            ),
-          );
-        }
-      },
-    }),
-  );
+export const createWebsocketsFetcherFromClient =
+  (wsClient: Client) => (graphQLParams: FetcherParams) =>
+    makeAsyncIterableIteratorFromSink<ExecutionResult>(sink =>
+      wsClient!.subscribe(graphQLParams, {
+        ...sink,
+        error: err => {
+          if (err instanceof Error) {
+            sink.error(err);
+          } else if (err instanceof CloseEvent) {
+            sink.error(
+              new Error(
+                `Socket closed with event ${err.code} ${
+                  err.reason || ''
+                }`.trim(),
+              ),
+            );
+          } else {
+            sink.error(
+              new Error(
+                (err as GraphQLError[])
+                  .map(({ message }) => message)
+                  .join(', '),
+              ),
+            );
+          }
+        },
+      }),
+    );
 
 /**
  * Allow legacy websockets protocol client, but no definitions for it,
@@ -126,15 +125,15 @@ export const createWebsocketsFetcherFromClient = (wsClient: Client) => (
  * @param legacyWsClient
  * @returns
  */
-export const createLegacyWebsocketsFetcher = (legacyWsClient: {
-  request: (params: FetcherParams) => unknown;
-}) => (graphQLParams: FetcherParams) => {
-  const observable = legacyWsClient.request(graphQLParams);
-  return makeAsyncIterableIteratorFromSink<ExecutionResult>(
-    // @ts-ignore
-    sink => observable.subscribe(sink).unsubscribe,
-  );
-};
+export const createLegacyWebsocketsFetcher =
+  (legacyWsClient: { request: (params: FetcherParams) => unknown }) =>
+  (graphQLParams: FetcherParams) => {
+    const observable = legacyWsClient.request(graphQLParams);
+    return makeAsyncIterableIteratorFromSink<ExecutionResult>(
+      // @ts-ignore
+      sink => observable.subscribe(sink).unsubscribe,
+    );
+  };
 /**
  * create a fetcher with the `IncrementalDelivery` HTTP/S spec for
  * `@stream` and `@defer` support using `fetch-multipart-graphql`

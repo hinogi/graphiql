@@ -238,7 +238,8 @@ export function toCompletion(
 }
 
 export class CompletionAdapter
-  implements monaco.languages.CompletionItemProvider {
+  implements monaco.languages.CompletionItemProvider
+{
   constructor(private _worker: WorkerAccessor) {
     this._worker = _worker;
   }
@@ -272,7 +273,8 @@ export class CompletionAdapter
 }
 
 export class DocumentFormattingAdapter
-  implements monaco.languages.DocumentFormattingEditProvider {
+  implements monaco.languages.DocumentFormattingEditProvider
+{
   constructor(private _worker: WorkerAccessor) {
     this._worker = _worker;
   }

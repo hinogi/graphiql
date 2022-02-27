@@ -36,9 +36,8 @@ async function render() {
       resultsEditor,
       variablesModel,
     } = editors;
-    const { schemaReloadButton, executeOpButton, schemaPicker } = renderToolbar(
-      toolbar,
-    );
+    const { schemaReloadButton, executeOpButton, schemaPicker } =
+      renderToolbar(toolbar);
 
     const operationUri = operationModel.uri.toString();
 

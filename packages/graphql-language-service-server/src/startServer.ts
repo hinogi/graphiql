@@ -294,18 +294,16 @@ async function addHandlers({
   connection.onNotification(
     DidOpenTextDocumentNotification.type,
     async params => {
-      const diagnostics = await messageProcessor.handleDidOpenOrSaveNotification(
-        params,
-      );
+      const diagnostics =
+        await messageProcessor.handleDidOpenOrSaveNotification(params);
       reportDiagnostics(diagnostics, connection);
     },
   );
   connection.onNotification(
     DidSaveTextDocumentNotification.type,
     async params => {
-      const diagnostics = await messageProcessor.handleDidOpenOrSaveNotification(
-        params,
-      );
+      const diagnostics =
+        await messageProcessor.handleDidOpenOrSaveNotification(params);
       reportDiagnostics(diagnostics, connection);
     },
   );

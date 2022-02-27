@@ -50,9 +50,8 @@ export class LanguageService {
   private _schemaLoader: SchemaLoader = defaultSchemaLoader;
   private _parseOptions: ParseOptions | undefined = undefined;
   private _customValidationRules: ValidationRule[] | undefined = undefined;
-  private _exteralFragmentDefinitionNodes:
-    | FragmentDefinitionNode[]
-    | null = null;
+  private _exteralFragmentDefinitionNodes: FragmentDefinitionNode[] | null =
+    null;
   private _exteralFragmentDefinitionsString: string | null = null;
   constructor({
     parser,

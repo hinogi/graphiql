@@ -1018,7 +1018,9 @@ enum ContributionOrderField {
 }
 
 type ContributionsCollection {
-  commitContributionsByRepository(maxRepositories: Int = 25): [CommitContributionsByRepository!]!
+  commitContributionsByRepository(
+    maxRepositories: Int = 25
+  ): [CommitContributionsByRepository!]!
 
   contributionCalendar: ContributionCalendar!
 
@@ -1108,7 +1110,9 @@ type ContributionsCollection {
     orderBy: ContributionOrder
   ): CreatedPullRequestReviewContributionConnection!
 
-  pullRequestReviewContributionsByRepository(maxRepositories: Int = 25): [PullRequestReviewContributionsByRepository!]!
+  pullRequestReviewContributionsByRepository(
+    maxRepositories: Int = 25
+  ): [PullRequestReviewContributionsByRepository!]!
 
   repositoryContributions(
     after: String
@@ -1304,7 +1308,9 @@ type CreatedIssueContributionEdge {
   node: CreatedIssueContribution
 }
 
-union CreatedIssueOrRestrictedContribution = CreatedIssueContribution | RestrictedContribution
+union CreatedIssueOrRestrictedContribution =
+    CreatedIssueContribution
+  | RestrictedContribution
 
 type CreatedPullRequestContribution implements Contribution {
   isRestricted: Boolean!
@@ -1336,7 +1342,9 @@ type CreatedPullRequestContributionEdge {
   node: CreatedPullRequestContribution
 }
 
-union CreatedPullRequestOrRestrictedContribution = CreatedPullRequestContribution | RestrictedContribution
+union CreatedPullRequestOrRestrictedContribution =
+    CreatedPullRequestContribution
+  | RestrictedContribution
 
 type CreatedPullRequestReviewContribution implements Contribution {
   isRestricted: Boolean!
@@ -1402,7 +1410,9 @@ type CreatedRepositoryContributionEdge {
   node: CreatedRepositoryContribution
 }
 
-union CreatedRepositoryOrRestrictedContribution = CreatedRepositoryContribution | RestrictedContribution
+union CreatedRepositoryOrRestrictedContribution =
+    CreatedRepositoryContribution
+  | RestrictedContribution
 
 input CreateIssueInput {
   repositoryId: ID!
@@ -3037,12 +3047,16 @@ type MarketplaceListing implements Node {
   installedForViewer: Boolean!
 
   isApproved: Boolean!
-    @deprecated(reason: "`isApproved` will be removed. Use `isPublic` instead. Removal on 2019-10-01 UTC.")
+    @deprecated(
+      reason: "`isApproved` will be removed. Use `isPublic` instead. Removal on 2019-10-01 UTC."
+    )
 
   isArchived: Boolean!
 
   isDelisted: Boolean!
-    @deprecated(reason: "`isDelisted` will be removed. Use `isArchived` instead. Removal on 2019-10-01 UTC.")
+    @deprecated(
+      reason: "`isDelisted` will be removed. Use `isArchived` instead. Removal on 2019-10-01 UTC."
+    )
 
   isDraft: Boolean!
 
@@ -3371,21 +3385,31 @@ type MoveProjectColumnPayload {
 }
 
 type Mutation {
-  acceptTopicSuggestion(input: AcceptTopicSuggestionInput!): AcceptTopicSuggestionPayload
+  acceptTopicSuggestion(
+    input: AcceptTopicSuggestionInput!
+  ): AcceptTopicSuggestionPayload
 
-  addAssigneesToAssignable(input: AddAssigneesToAssignableInput!): AddAssigneesToAssignablePayload
+  addAssigneesToAssignable(
+    input: AddAssigneesToAssignableInput!
+  ): AddAssigneesToAssignablePayload
 
   addComment(input: AddCommentInput!): AddCommentPayload
 
-  addLabelsToLabelable(input: AddLabelsToLabelableInput!): AddLabelsToLabelablePayload
+  addLabelsToLabelable(
+    input: AddLabelsToLabelableInput!
+  ): AddLabelsToLabelablePayload
 
   addProjectCard(input: AddProjectCardInput!): AddProjectCardPayload
 
   addProjectColumn(input: AddProjectColumnInput!): AddProjectColumnPayload
 
-  addPullRequestReview(input: AddPullRequestReviewInput!): AddPullRequestReviewPayload
+  addPullRequestReview(
+    input: AddPullRequestReviewInput!
+  ): AddPullRequestReviewPayload
 
-  addPullRequestReviewComment(input: AddPullRequestReviewCommentInput!): AddPullRequestReviewCommentPayload
+  addPullRequestReviewComment(
+    input: AddPullRequestReviewCommentInput!
+  ): AddPullRequestReviewCommentPayload
 
   addReaction(input: AddReactionInput!): AddReactionPayload
 
@@ -3393,7 +3417,9 @@ type Mutation {
 
   changeUserStatus(input: ChangeUserStatusInput!): ChangeUserStatusPayload
 
-  clearLabelsFromLabelable(input: ClearLabelsFromLabelableInput!): ClearLabelsFromLabelablePayload
+  clearLabelsFromLabelable(
+    input: ClearLabelsFromLabelableInput!
+  ): ClearLabelsFromLabelablePayload
 
   cloneProject(input: CloneProjectInput!): CloneProjectPayload
 
@@ -3401,9 +3427,13 @@ type Mutation {
 
   closePullRequest(input: ClosePullRequestInput!): ClosePullRequestPayload
 
-  convertProjectCardNoteToIssue(input: ConvertProjectCardNoteToIssueInput!): ConvertProjectCardNoteToIssuePayload
+  convertProjectCardNoteToIssue(
+    input: ConvertProjectCardNoteToIssueInput!
+  ): ConvertProjectCardNoteToIssuePayload
 
-  createBranchProtectionRule(input: CreateBranchProtectionRuleInput!): CreateBranchProtectionRulePayload
+  createBranchProtectionRule(
+    input: CreateBranchProtectionRuleInput!
+  ): CreateBranchProtectionRulePayload
 
   createIssue(input: CreateIssueInput!): CreateIssuePayload
 
@@ -3411,9 +3441,13 @@ type Mutation {
 
   createPullRequest(input: CreatePullRequestInput!): CreatePullRequestPayload
 
-  declineTopicSuggestion(input: DeclineTopicSuggestionInput!): DeclineTopicSuggestionPayload
+  declineTopicSuggestion(
+    input: DeclineTopicSuggestionInput!
+  ): DeclineTopicSuggestionPayload
 
-  deleteBranchProtectionRule(input: DeleteBranchProtectionRuleInput!): DeleteBranchProtectionRulePayload
+  deleteBranchProtectionRule(
+    input: DeleteBranchProtectionRuleInput!
+  ): DeleteBranchProtectionRulePayload
 
   deleteIssue(input: DeleteIssueInput!): DeleteIssuePayload
 
@@ -3423,13 +3457,21 @@ type Mutation {
 
   deleteProjectCard(input: DeleteProjectCardInput!): DeleteProjectCardPayload
 
-  deleteProjectColumn(input: DeleteProjectColumnInput!): DeleteProjectColumnPayload
+  deleteProjectColumn(
+    input: DeleteProjectColumnInput!
+  ): DeleteProjectColumnPayload
 
-  deletePullRequestReview(input: DeletePullRequestReviewInput!): DeletePullRequestReviewPayload
+  deletePullRequestReview(
+    input: DeletePullRequestReviewInput!
+  ): DeletePullRequestReviewPayload
 
-  deletePullRequestReviewComment(input: DeletePullRequestReviewCommentInput!): DeletePullRequestReviewCommentPayload
+  deletePullRequestReviewComment(
+    input: DeletePullRequestReviewCommentInput!
+  ): DeletePullRequestReviewCommentPayload
 
-  dismissPullRequestReview(input: DismissPullRequestReviewInput!): DismissPullRequestReviewPayload
+  dismissPullRequestReview(
+    input: DismissPullRequestReviewInput!
+  ): DismissPullRequestReviewPayload
 
   lockLockable(input: LockLockableInput!): LockLockablePayload
 
@@ -3439,11 +3481,17 @@ type Mutation {
 
   moveProjectColumn(input: MoveProjectColumnInput!): MoveProjectColumnPayload
 
-  removeAssigneesFromAssignable(input: RemoveAssigneesFromAssignableInput!): RemoveAssigneesFromAssignablePayload
+  removeAssigneesFromAssignable(
+    input: RemoveAssigneesFromAssignableInput!
+  ): RemoveAssigneesFromAssignablePayload
 
-  removeLabelsFromLabelable(input: RemoveLabelsFromLabelableInput!): RemoveLabelsFromLabelablePayload
+  removeLabelsFromLabelable(
+    input: RemoveLabelsFromLabelableInput!
+  ): RemoveLabelsFromLabelablePayload
 
-  removeOutsideCollaborator(input: RemoveOutsideCollaboratorInput!): RemoveOutsideCollaboratorPayload
+  removeOutsideCollaborator(
+    input: RemoveOutsideCollaboratorInput!
+  ): RemoveOutsideCollaboratorPayload
 
   removeReaction(input: RemoveReactionInput!): RemoveReactionPayload
 
@@ -3455,17 +3503,27 @@ type Mutation {
 
   requestReviews(input: RequestReviewsInput!): RequestReviewsPayload
 
-  resolveReviewThread(input: ResolveReviewThreadInput!): ResolveReviewThreadPayload
+  resolveReviewThread(
+    input: ResolveReviewThreadInput!
+  ): ResolveReviewThreadPayload
 
-  submitPullRequestReview(input: SubmitPullRequestReviewInput!): SubmitPullRequestReviewPayload
+  submitPullRequestReview(
+    input: SubmitPullRequestReviewInput!
+  ): SubmitPullRequestReviewPayload
 
   unlockLockable(input: UnlockLockableInput!): UnlockLockablePayload
 
-  unmarkIssueAsDuplicate(input: UnmarkIssueAsDuplicateInput!): UnmarkIssueAsDuplicatePayload
+  unmarkIssueAsDuplicate(
+    input: UnmarkIssueAsDuplicateInput!
+  ): UnmarkIssueAsDuplicatePayload
 
-  unresolveReviewThread(input: UnresolveReviewThreadInput!): UnresolveReviewThreadPayload
+  unresolveReviewThread(
+    input: UnresolveReviewThreadInput!
+  ): UnresolveReviewThreadPayload
 
-  updateBranchProtectionRule(input: UpdateBranchProtectionRuleInput!): UpdateBranchProtectionRulePayload
+  updateBranchProtectionRule(
+    input: UpdateBranchProtectionRuleInput!
+  ): UpdateBranchProtectionRulePayload
 
   updateIssue(input: UpdateIssueInput!): UpdateIssuePayload
 
@@ -3475,13 +3533,19 @@ type Mutation {
 
   updateProjectCard(input: UpdateProjectCardInput!): UpdateProjectCardPayload
 
-  updateProjectColumn(input: UpdateProjectColumnInput!): UpdateProjectColumnPayload
+  updateProjectColumn(
+    input: UpdateProjectColumnInput!
+  ): UpdateProjectColumnPayload
 
   updatePullRequest(input: UpdatePullRequestInput!): UpdatePullRequestPayload
 
-  updatePullRequestReview(input: UpdatePullRequestReviewInput!): UpdatePullRequestReviewPayload
+  updatePullRequestReview(
+    input: UpdatePullRequestReviewInput!
+  ): UpdatePullRequestReviewPayload
 
-  updatePullRequestReviewComment(input: UpdatePullRequestReviewCommentInput!): UpdatePullRequestReviewCommentPayload
+  updatePullRequestReviewComment(
+    input: UpdatePullRequestReviewCommentInput!
+  ): UpdatePullRequestReviewCommentPayload
 
   updateSubscription(input: UpdateSubscriptionInput!): UpdateSubscriptionPayload
 
@@ -6517,7 +6581,13 @@ type ReviewRequestRemovedEvent implements Node {
   requestedReviewer: RequestedReviewer
 }
 
-union SearchResultItem = Issue | PullRequest | Repository | User | Organization | MarketplaceListing
+union SearchResultItem =
+    Issue
+  | PullRequest
+  | Repository
+  | User
+  | Organization
+  | MarketplaceListing
 
 type SearchResultItemConnection {
   codeCount: Int!

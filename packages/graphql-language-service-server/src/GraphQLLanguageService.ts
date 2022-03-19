@@ -169,10 +169,11 @@ export class GraphQLLanguageService {
       projectConfig,
     );
 
-    const fragmentDependencies = await this._graphQLCache.getFragmentDependencies(
-      query,
-      fragmentDefinitions,
-    );
+    const fragmentDependencies =
+      await this._graphQLCache.getFragmentDependencies(
+        query,
+        fragmentDefinitions,
+      );
 
     const dependenciesSource = fragmentDependencies.reduce(
       (prev, cur) => `${prev} ${print(cur.definition)}`,
@@ -364,14 +365,14 @@ export class GraphQLLanguageService {
     filePath: Uri,
     projectConfig: GraphQLProjectConfig,
   ): Promise<DefinitionQueryResult | null> {
-    const objectTypeDefinitions = await this._graphQLCache.getObjectTypeDefinitions(
-      projectConfig,
-    );
+    const objectTypeDefinitions =
+      await this._graphQLCache.getObjectTypeDefinitions(projectConfig);
 
-    const dependencies = await this._graphQLCache.getObjectTypeDependenciesForAST(
-      ast,
-      objectTypeDefinitions,
-    );
+    const dependencies =
+      await this._graphQLCache.getObjectTypeDependenciesForAST(
+        ast,
+        objectTypeDefinitions,
+      );
 
     const localObjectTypeDefinitions = ast.definitions.filter(
       definition =>
@@ -382,9 +383,8 @@ export class GraphQLLanguageService {
         definition.kind === INTERFACE_TYPE_DEFINITION,
     );
 
-    const typeCastedDefs = (localObjectTypeDefinitions as any) as Array<
-      TypeDefinitionNode
-    >;
+    const typeCastedDefs =
+      localObjectTypeDefinitions as any as Array<TypeDefinitionNode>;
 
     const localOperationDefinationInfos = typeCastedDefs.map(
       (definition: TypeDefinitionNode) => ({
@@ -423,9 +423,8 @@ export class GraphQLLanguageService {
       definition => definition.kind === FRAGMENT_DEFINITION,
     );
 
-    const typeCastedDefs = (localFragDefinitions as any) as Array<
-      FragmentDefinitionNode
-    >;
+    const typeCastedDefs =
+      localFragDefinitions as any as Array<FragmentDefinitionNode>;
 
     const localFragInfos = typeCastedDefs.map(
       (definition: FragmentDefinitionNode) => ({

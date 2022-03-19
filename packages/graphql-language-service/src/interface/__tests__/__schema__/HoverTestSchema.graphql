@@ -3,12 +3,12 @@ schema {
 }
 
 """
- This is type documentation for Chicken
+This is type documentation for Chicken
 """
 scalar Chicken
 
 """
- docs for color
+docs for color
 """
 enum Color {
   RED
@@ -23,11 +23,11 @@ interface TestInterface {
 }
 
 """
- This is type documentation for TestType
+This is type documentation for TestType
 """
 type TestType implements TestInterface {
   """
-   This is field documentation for TestType.testField
+  This is field documentation for TestType.testField
   """
   testField: String
   testDeprecatedField: Float @deprecated(reason: "deprecation reason")
@@ -36,7 +36,7 @@ type TestType implements TestInterface {
 
 type Query {
   """
-   This is field documentation for Query.thing
+  This is field documentation for Query.thing
   """
   thing: TestType
   listOfThing: [TestType!]

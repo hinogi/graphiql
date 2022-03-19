@@ -359,11 +359,11 @@ export class GraphQLCache implements GraphQLCacheInterface {
             .map(filePath => {
               // @TODO
               // so we have to force this here
-              // becase glob's DefinatelyTyped doesn't use fs.Stats here though
+              // because glob's DefinatelyTyped doesn't use fs.Stats here though
               // the docs indicate that is what's there :shrug:
               const cacheEntry = globResult.statCache[filePath] as fs.Stats;
               return {
-                filePath: URI.parse(filePath).toString(),
+                filePath: URI.file(filePath).toString(),
                 mtime: Math.trunc(cacheEntry.mtime.getTime() / 1000),
                 size: cacheEntry.size,
               };

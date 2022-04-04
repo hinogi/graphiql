@@ -101,7 +101,7 @@ Pass headers to any and all requests
 
 #### `fetch`
 
-Pass a custom fetch implementation such as `isomorphic-feth`
+Pass a custom fetch implementation such as `isomorphic-fetch`
 
 ### Customization Examples
 
